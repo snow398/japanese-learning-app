@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-gray-100 text-gray-800 font-sans;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+}
+
+a {
+    @apply text-blue-500 hover:text-blue-700;
+}
+
+button {
+    @apply bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600;
+}
+
+.container {
+    @apply mx-auto px-4;
+}
+
+.card {
+    @apply bg-white shadow-md rounded-lg p-4 mb-4;
+}
+
+.quiz-card {
+    @apply border border-gray-300 rounded-lg p-4;
+}
+
+.navbar {
+    @apply bg-blue-600 text-white p-4;
+}
+
+.footer {
+    @apply bg-gray-800 text-white text-center p-4;
+}
