@@ -1,6 +1,5 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { hiraganaData } from '../data/hiragana';
+import React, { useEffect } from 'react';
+import hiraganaData from '../data/hiragana';
 import { speak } from '../utils/speech';
 
 const HiraganaPage = () => {
@@ -14,18 +13,17 @@ const HiraganaPage = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-3xl font-bold mb-4">Learn Hiragana</h1>
-            <div className="grid grid-cols-2 gap-4">
+            <h1 className="text-3xl font-bold mb-2">ひらがな · 平假名</h1>
+            <p className="text-gray-500 mb-6">点击卡片收听发音</p>
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
                 {hiraganaData.map((item) => (
-                    <div key={item.character} className="border p-4 rounded-lg shadow-md text-center">
-                        <h2 className="text-2xl">{item.character}</h2>
-                        <p className="text-lg">{item.romaji}</p>
-                        <button 
-                            onClick={() => handleSpeak(item.character)} 
-                            className="mt-2 bg-blue-500 text-white py-1 px-4 rounded hover:bg-blue-600"
-                        >
-                            Hear Pronunciation
-                        </button>
+                    <div
+                        key={item.character}
+                        onClick={() => handleSpeak(item.character)}
+                        className="border rounded-xl p-4 text-center cursor-pointer hover:bg-blue-50 hover:border-blue-400 transition-colors shadow-sm"
+                    >
+                        <div className="text-3xl font-bold">{item.character}</div>
+                        <div className="text-sm text-gray-500 mt-1">{item.romaji}</div>
                     </div>
                 ))}
             </div>
