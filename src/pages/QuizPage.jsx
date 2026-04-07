@@ -1,9 +1,12 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import QuizCard from '../components/QuizCard';
-import vocabulary from '../data/vocabulary';
+import vocabularyChapters from '../data/vocabulary';
 import { speak } from '../utils/speech';
 
 const QUIZ_LENGTH = 5;
+
+// 将所有章节单词合并为扁平数组
+const allWords = vocabularyChapters.flatMap(ch => ch.words);
 
 function shuffle(arr) {
     return [...arr].sort(() => Math.random() - 0.5);
@@ -16,7 +19,7 @@ function buildQuestions(words) {
         const options = shuffle([item.meaning, ...wrongs]);
         return {
             question: item.word,
-            romaji: item.romaji,
+            romaji: item.kana,
             example: item.example,
             correctAnswer: item.meaning,
             options,
@@ -25,7 +28,7 @@ function buildQuestions(words) {
 }
 
 const QuizPage = () => {
-    const [questions, setQuestions] = useState(() => buildQuestions(vocabulary));
+    const [questions, setQuestions] = useState(() => buildQuestions(allWords));
     const [score, setScore] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
@@ -44,7 +47,7 @@ const QuizPage = () => {
     };
 
     const restart = () => {
-        setQuestions(buildQuestions(vocabulary));
+        setQuestions(buildQuestions(allWords));
         setScore(0);
         setCurrentIndex(0);
         setIsFinished(false);
@@ -72,6 +75,7 @@ const QuizPage = () => {
                         />
                     </div>
                     <QuizCard
+                        key={currentIndex}
                         question={current.question}
                         options={current.options}
                         correctAnswer={current.correctAnswer}

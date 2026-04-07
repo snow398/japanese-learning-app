@@ -36,9 +36,9 @@ const QuizCard = ({ question, options, correctAnswer, onAnswer }) => {
             {isAnswered && (
                 <div className="mt-2 text-sm">
                     {selectedOption === correctAnswer ? (
-                        <span className="text-green-600">Correct!</span>
+                        <span className="text-green-600">✅ 回答正确！</span>
                     ) : (
-                        <span className="text-red-600">Incorrect. The correct answer is: {correctAnswer}</span>
+                        <span className="text-red-600">❌ 回答错误，正确答案是：{correctAnswer}</span>
                     )}
                 </div>
             )}
